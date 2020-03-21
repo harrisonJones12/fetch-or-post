@@ -1,5 +1,5 @@
 const initialState = {
-  fetchResponse: {}
+  fetchResponse: {},
 };
 
 const reducer = (state = initialState, action) => {
