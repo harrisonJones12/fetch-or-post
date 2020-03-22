@@ -6,3 +6,7 @@ export const makePost = payload => ({
 export const modalClose = () => ({
   type: "MODAL_CLOSE"
 });
+
+export const fetchPost = ()  => ({
+  type: "FETCH_POST",
+});
