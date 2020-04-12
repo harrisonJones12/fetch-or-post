@@ -1,15 +1,21 @@
 import React from "react";
-import {Fetch} from "./components/Fetch";
-// import Main from "./containers/Main";
+import { Fetch } from "./components/Fetch";
+import Main from "./containers/Main";
 
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Main /> */}
-      <Fetch />
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path="/fetch" component={Fetch} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
