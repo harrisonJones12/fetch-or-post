@@ -4,6 +4,8 @@ import { Form, Button } from "react-bootstrap";
 
 import { connect } from "react-redux";
 
+import { Link } from "react-router-dom";
+
 import { makePost } from "./actions/index.js";
 
 import ShowModal from "../components/ShowModal";
@@ -19,10 +21,10 @@ function Main(props) {
   const postInfo = {
     title,
     body,
-    userId
+    userId,
   };
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
     makePost(postInfo);
   };
@@ -33,9 +35,17 @@ function Main(props) {
     <div className="Main">
       {showModal ? <ShowModal /> : null}
       <div className="content">
-        <h1>Fetch or Post</h1>
+        <div className="heading">
+          <Link to="/fetch">
+            <h1>Fetch</h1>
+          </Link>
+          <h1>or</h1>
+          <Link to="/">
+            <h1>Post</h1>
+          </Link>
+        </div>
         <Form onSubmit={handleSubmit}>
-          <Form.Group onChange={e => setTitle(e.target.value)}>
+          <Form.Group onChange={(e) => setTitle(e.target.value)}>
             <Form.Label>Post Title</Form.Label>
             <Form.Control placeholder="Title" />
             <Form.Text className="text-muted">
@@ -43,7 +53,7 @@ function Main(props) {
             </Form.Text>
           </Form.Group>
 
-          <Form.Group onChange={e => setPost(e.target.value)}>
+          <Form.Group onChange={(e) => setPost(e.target.value)}>
             <Form.Label>Example textarea</Form.Label>
             <Form.Control as="textarea" rows="3" />
           </Form.Group>
@@ -57,12 +67,12 @@ function Main(props) {
 }
 
 const mapDispatchToProps = {
-  makePost: makePost
+  makePost: makePost,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.loading,
-  showModal: state.showModal
+  showModal: state.showModal,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

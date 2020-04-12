@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Card, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./PostCard.css";
 import { fetchPost } from "../containers/actions/index.js";
@@ -13,10 +14,17 @@ function PostCard(props) {
   const { loading, fetchResponse } = props;
 
   return (
-    <div>
-      <h1>Fetch or Post</h1>
+    <Fragment>
+      <div className="heading">
+        <Link to="/fetch">
+          <h1>Fetch</h1>
+        </Link>
+        <h1>or</h1>
+        <Link to="/">
+          <h1>Post</h1>
+        </Link>
+      </div>
       <Card className="postcard-content">
-        <Card.Header as="h5">Featured</Card.Header>
         <Card.Body>
           <Card.Title>{fetchResponse.title}</Card.Title>
           <Card.Text>{fetchResponse.body}</Card.Text>
@@ -25,17 +33,17 @@ function PostCard(props) {
           </Button>
         </Card.Body>
       </Card>
-    </div>
+    </Fragment>
   );
 }
 
 const mapDispatchToProps = {
-  fetchPost: fetchPost
+  fetchPost: fetchPost,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.loading,
-  fetchResponse: state.fetchResponse
+  fetchResponse: state.fetchResponse,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard);
