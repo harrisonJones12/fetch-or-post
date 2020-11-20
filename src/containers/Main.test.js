@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent, cleanup } from "@testing-library/react";
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 // import '@testing-library/jest-dom/extend-expect'
@@ -17,10 +18,16 @@ describe("<Main />", () => {
 
   const props = {
     ...mapStateToProps(state),
-    action
+    makePost: jest.fn()
   };
 
   afterEach(cleanup);
+
+  const renderWithRouter = (ui, { route = '/' } = {}) => {
+    window.history.pushState({}, 'Test page', route)
+  
+    return render(ui, { wrapper: BrowserRouter })
+  }
 
   // console.log(props);
 
@@ -28,7 +35,7 @@ describe("<Main />", () => {
     const mockStore = configureStore();
     const store = mockStore(state);
 
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <Provider store={store}>
         <ConnectedMain />
       </Provider>
@@ -37,11 +44,11 @@ describe("<Main />", () => {
     expect(Post).toBeDefined();
   });
 
-  it.only("submits form successfully", () => {
-    const { getByTestId } = render(<Main {...props} />);
-    console.log(props);
+  it("submits form successfully", () => {
+    const { getByTestId } = renderWithRouter(<Main {...props} />);
+
     fireEvent.click(getByTestId("post-form"));
 
-    expect(action.makePost).toHaveBeenCalled();
+    expect(props.makePost).toHaveBeenCalled();
   });
 });

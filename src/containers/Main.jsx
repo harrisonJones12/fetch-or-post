@@ -12,7 +12,7 @@ import ShowModal from "../components/ShowModal";
 
 import "./Main.css";
 
-function Main(props) {
+export function Main(props) {
   const [title, setTitle] = useState("");
   const [body, setPost] = useState("");
 
@@ -24,12 +24,14 @@ function Main(props) {
     userId,
   };
 
+  const { makePost, loading, showModal } = props;
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     makePost(postInfo);
   };
 
-  const { makePost, loading, showModal } = props;
+  
 
   return (
     <div className="Main">
@@ -57,7 +59,7 @@ function Main(props) {
             <Form.Label>Example textarea</Form.Label>
             <Form.Control as="textarea" rows="3" />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" data-testid="post-form">
             {loading ? "Submiting ...." : "Submit"}
           </Button>
         </Form>
@@ -70,7 +72,7 @@ const mapDispatchToProps = {
   makePost: makePost,
 };
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   loading: state.loading,
   showModal: state.showModal,
 });
