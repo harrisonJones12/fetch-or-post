@@ -55,7 +55,7 @@ export function Main(props) {
             </Form.Group>
 
             <Form.Group onChange={(e) => setPost(e.target.value)}>
-              <Form.Label>Example textarea</Form.Label>
+              <Form.Label>Post Message</Form.Label>
               <Form.Control as="textarea" rows="3" />
             </Form.Group>
             <Button variant="primary" type="submit" data-testid="post-form">
