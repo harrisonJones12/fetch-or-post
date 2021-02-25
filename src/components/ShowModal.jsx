@@ -22,8 +22,8 @@ function ShowModal(props) {
         <Modal.Header closeButton>
           <Modal.Title>Success!</Modal.Title>
         </Modal.Header>
-        <Modal.Body> {post.title} </Modal.Body>
-        <Modal.Body> {post.body} </Modal.Body>
+        <Modal.Body>{post.title}</Modal.Body>
+        <Modal.Body>{post.body}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

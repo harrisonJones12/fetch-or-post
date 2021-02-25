@@ -14,12 +14,5 @@ export class Fetch extends React.Component {
 }
 
 
-// function Fetch() {
-//   return( <div>
-     
-//     </div>)
-// }
-
-
 
 

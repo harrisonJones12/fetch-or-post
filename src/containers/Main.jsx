@@ -31,8 +31,6 @@ export function Main(props) {
     makePost(postInfo);
   };
 
-  
-
   return (
     <div className="Main">
       {showModal ? <ShowModal /> : null}
@@ -46,23 +44,25 @@ export function Main(props) {
             <h1>Post</h1>
           </Link>
         </div>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group onChange={(e) => setTitle(e.target.value)}>
-            <Form.Label>Post Title</Form.Label>
-            <Form.Control placeholder="Title" />
-            <Form.Text className="text-muted">
-              Get creative no one will see it ;)
-            </Form.Text>
-          </Form.Group>
+        <div className="post-container">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group onChange={(e) => setTitle(e.target.value)}>
+              <Form.Label>Post Title</Form.Label>
+              <Form.Control placeholder="Title" />
+              <Form.Text className="text-muted">
+                Get creative no one will see it ;)
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group onChange={(e) => setPost(e.target.value)}>
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows="3" />
-          </Form.Group>
-          <Button variant="primary" type="submit" data-testid="post-form">
-            {loading ? "Submiting ...." : "Submit"}
-          </Button>
-        </Form>
+            <Form.Group onChange={(e) => setPost(e.target.value)}>
+              <Form.Label>Example textarea</Form.Label>
+              <Form.Control as="textarea" rows="3" />
+            </Form.Group>
+            <Button variant="primary" type="submit" data-testid="post-form">
+              {loading ? "Submiting ...." : "Submit"}
+            </Button>
+          </Form>
+        </div>
       </div>
     </div>
   );
